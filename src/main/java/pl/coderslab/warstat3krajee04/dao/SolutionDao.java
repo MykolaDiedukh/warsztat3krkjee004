@@ -20,6 +20,8 @@ public class SolutionDao {
     private static final String DELETE_SOLUTION_BY_ID_QUERY = "DELETE FROM solutions WHERE id = ?;";
     private static final String UPDATE_SOLUTION_QUERY = "UPDATE solutions SET updated = ?, description = ? WHERE id = ?;";
     private static final String UPDATE_SOLUTION_RATING_QUERY = "UPDATE solutions SET point = ?, comment = ? WHERE id = ?;";
+    private String READ_RECENT_QUERY = "SELECT id, created, updated, description, exercise_id, user_id " +
+            "                           FROM solutions ORDER BY created DESC LIMIT ?;";
 
     /**
      * Create solution
@@ -140,7 +142,7 @@ public class SolutionDao {
         }
     }
 
- /**
+    /**
      * Update solution
      *
      * @param solution
@@ -159,6 +161,7 @@ public class SolutionDao {
 
     /**
      * Return all solutions by userId
+     *
      * @param userId
      * @return
      */
@@ -173,7 +176,7 @@ public class SolutionDao {
                     Solution solutionToAdd = new Solution();
                     solutionToAdd.setId(resultSet.getInt("id"));
                     solutionToAdd.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
-                    if(resultSet.getTimestamp("updated")!=null) {
+                    if (resultSet.getTimestamp("updated") != null) {
                         solutionToAdd.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
                     }
                     solutionToAdd.setDescription(resultSet.getString("description"));
@@ -190,6 +193,7 @@ public class SolutionDao {
 
     /**
      * Return all solutions by exerciseId
+     *
      * @param exerciseId
      * @return
      */
@@ -215,5 +219,31 @@ public class SolutionDao {
             e.printStackTrace();
         }
         return solutionList;
+    }
+
+    public List<Solution> findRecent(int howMany) {
+        List<Solution> result = new ArrayList<>();
+
+        try (Connection conn = DbUtil.getConnection()) {
+            PreparedStatement statement = conn.prepareStatement(READ_RECENT_QUERY);
+            statement.setInt(1, howMany);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Solution sol = new Solution();
+                sol.setId(resultSet.getInt("id"));
+                sol.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+                if (resultSet.getTimestamp("updated") != null) {
+                    sol.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                }
+                sol.setDescription(resultSet.getString("description"));
+                sol.setExerciseId(resultSet.getInt("exercise_id"));
+                sol.setUserId(resultSet.getInt("user_id"));
+                result.add(sol);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }

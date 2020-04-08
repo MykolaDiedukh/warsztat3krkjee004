@@ -14,6 +14,7 @@ public class UserDao {
     private static final String CREAT_USER_QUERY = "INSERT INTO users (username, email, password, user_group_id) VALUES (?,?,?,?);";
     private static final String FIND_ALL_USERS_QUERY = "SELECT * FROM users;";
     private static final String READ_USER_BY_ID_QUERY = "SELECT * FROM users where id = ?;";
+    private static final String READ_USER_BY_GROUP_ID_QUERY = "SELECT * FROM users where user_group_id = ?;";
     private static final String DELETE_USER_BY_ID_QUERY = "DELETE FROM users where id = ?;";
     private static final String UPDATE_USER_QUERY= "UPDATE users SET username = ? , email = ?, password = ?, user_group_id = ? WHERE id = ?;";
 
@@ -146,7 +147,7 @@ public class UserDao {
     public List<User> findAllByGroupId(int groupId) {
         List<User> userList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(READ_USER_BY_ID_QUERY)
+             PreparedStatement statement = connection.prepareStatement(READ_USER_BY_GROUP_ID_QUERY)
         ) {
             statement.setInt(1, groupId);
             try (ResultSet resultSet = statement.executeQuery()) {
