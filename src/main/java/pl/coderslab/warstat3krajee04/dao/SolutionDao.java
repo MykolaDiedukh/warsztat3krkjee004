@@ -70,7 +70,9 @@ public class SolutionDao {
                 Solution solutionToAdd = new Solution();
                 solutionToAdd.setId(resultSet.getInt("id"));
                 solutionToAdd.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
-                solutionToAdd.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                if (resultSet.getTimestamp("updated") != null) {
+                    solutionToAdd.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                }
                 solutionToAdd.setDescription(resultSet.getString("description"));
                 solutionToAdd.setExerciseId(resultSet.getInt("exercise_id"));
                 solutionToAdd.setUserId(resultSet.getInt("user_id"));
@@ -98,7 +100,9 @@ public class SolutionDao {
                 while (resultSet.next()) {
                     solution.setId(resultSet.getInt("id"));
                     solution.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
-                    solution.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                    if (resultSet.getTimestamp("updated") != null) {
+                        solution.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                    }
                     solution.setDescription(resultSet.getString("description"));
                     solution.setExerciseId(resultSet.getInt("exercise_id"));
                     solution.setUserId(resultSet.getInt("user_id"));
@@ -208,7 +212,9 @@ public class SolutionDao {
                     Solution solutionToAdd = new Solution();
                     solutionToAdd.setId(resultSet.getInt("id"));
                     solutionToAdd.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
-                    solutionToAdd.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                    if (resultSet.getTimestamp("updated") != null) {
+                        solutionToAdd.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                    }
                     solutionToAdd.setDescription(resultSet.getString("description"));
                     solutionToAdd.setExerciseId(resultSet.getInt("exercise_id"));
                     solutionToAdd.setUserId(resultSet.getInt("user_id"));

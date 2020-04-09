@@ -4,12 +4,13 @@
 <head>
     <title>Programming school</title>
     <%@include file="header.jsp" %>
+    <link href='<c:url value="/css/table.css"/>' rel="stylesheet" type="text/css">
 </head>
 <body>
 <p>Details of user:</p>
 <div>
-<table>
-    <thead>
+<table class="content-table">
+    <thead  >
     <tr>
         <td>Name of user</td>
         <td>email</td>
@@ -23,7 +24,7 @@
     </tbody>
 </table>
 </div>
-<table>
+<table class="content-table">
     <thead>
     <tr>
         <td>Exercise name</td>

@@ -1,6 +1,5 @@
-package pl.coderslab.warstat3krajee04.servlet;
+package pl.coderslab.warstat3krajee04.web;
 
-import pl.coderslab.warstat3krajee04.dao.UserDao;
 import pl.coderslab.warstat3krajee04.dao.UserGroupDao;
 
 import javax.servlet.ServletException;

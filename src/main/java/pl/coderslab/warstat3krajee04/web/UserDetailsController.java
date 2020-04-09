@@ -1,4 +1,4 @@
-package pl.coderslab.warstat3krajee04.servlet;
+package pl.coderslab.warstat3krajee04.web;
 
 import pl.coderslab.warstat3krajee04.dao.SolutionDao;
 import pl.coderslab.warstat3krajee04.dao.UserDao;

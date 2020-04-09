@@ -4,31 +4,38 @@
 <head>
     <title>Programming school</title>
     <%@include file="header.jsp" %>
+    <link href='<c:url value="/css/table.css"/>' rel="stylesheet" type="text/css">
 </head>
 <body>
 <p>Solutions:</p>
-<table>
-    <thead>
-    <tr>
-        <td>Exercise name</td>
-        <td>Solution author</td>
-        <td>Date</td>
-        <td>Actions</td>
-    </tr>
-    </thead>
-    <tbody>
+    <div>
+        <table class="content-table">
+            <thead>
+            <tr>
+                <td>Exercise name</td>
+                <td>Solution author</td>
+                <td>Date</td>
+                <td>Actions</td>
+            </tr>
+            </thead>
+            <tbody>
 
-    <c:forEach var="group" items="${requestScope.solutions}">
-        <tr>
-            <td>${group.exerciseId}</td>
-            <td>${group.description}</td>
-            <td>${group.created}</td>
-            <td><a href="#">${group.userId}</a></td>
-        </tr>
-    </c:forEach>
+            <c:forEach var="sol" items="${requestScope.solutions}">
+                <tr>
+                    <td>${sol.exerciseId}</td>
+                    <td>${sol.description}</td>
+                    <td>${sol.created}</td>
+                    <td>
+                        <form action="${pageContext.request.contextPath}/?solutionid=${sol.id}" method="post">
+                            <button type="submit">Details</button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
 
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
 </body>
 <footer>
     <%@include file="footer.jsp" %>

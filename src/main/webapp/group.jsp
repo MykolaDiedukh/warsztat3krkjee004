@@ -4,11 +4,12 @@
 <head>
     <title>Programming school</title>
     <%@include file="header.jsp" %>
+    <link href='<c:url value="/css/table.css"/>' rel="stylesheet" type="text/css">
 </head>
 <body>
 
 <p>Groups:</p>
-<table>
+<table class="content-table">
     <thead>
     <tr>
         <td>Name of group</td>

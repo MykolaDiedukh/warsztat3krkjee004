@@ -2,14 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
+    <title>footer</title>
+    <meta charset="UTF-8">
+    <link href='<c:url value="/css/footer.css"/>' rel="stylesheet" type="text/css">
 </head>
 <body>
-<p>Footer</p>
+<div class="footer-end">
+    <p>Desing By: <a href="${pageContext.request.contextPath}/">Programing school</a></p>
+</div>
 </body>
-<footer>
-    <p class="main">
-        2017 © nayma.pl | Wszystkie prawa zastrzeżone | Design by <a href="https://nayma.pl" target="_blank">nayma.pl</a>
-    </p>
-</footer>
 </html>

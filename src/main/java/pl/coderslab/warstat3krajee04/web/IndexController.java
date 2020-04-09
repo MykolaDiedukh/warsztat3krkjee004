@@ -1,12 +1,8 @@
-package pl.coderslab.warstat3krajee04.servlet;
+package pl.coderslab.warstat3krajee04.web;
 
 import pl.coderslab.warstat3krajee04.dao.SolutionDao;
 import pl.coderslab.warstat3krajee04.model.Solution;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,5 +31,12 @@ public class IndexController extends HttpServlet {
         List<Solution> solutions = solutionDao.findRecent(5);
         request.setAttribute("solutions", solutions);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int solutionId = Integer.parseInt(request.getParameter("solutionid"));
+        request.setAttribute("solDetails", new SolutionDao().readById(solutionId));
+        getServletContext().getRequestDispatcher("/details.jsp").forward(request,response);
     }
 }
