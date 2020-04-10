@@ -21,7 +21,6 @@
                 <td>Group name</td>
                 <td></td>
                 <td></td>
-                <td></td>
             </tr>
             </thead>
             <tbody>
@@ -35,8 +34,8 @@
                     </td>
                     <td><form action="${pageContext.request.contextPath}/?todo=${sol.id}" method="post">
                         <button class="button button2" type="submit">Delete</button>
-                    </form></td>
-                    <td><a href="${pageContext.request.contextPath}/group/list?groupId=${group.id}">Edit</a></td>
+                    </form>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

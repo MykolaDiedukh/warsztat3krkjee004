@@ -11,7 +11,6 @@
 
 <article>
     <div>
-        <p>Users:</p>
         <table class="content-table">
             <thead>
             <tr>

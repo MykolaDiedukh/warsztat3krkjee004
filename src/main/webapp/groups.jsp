@@ -11,7 +11,6 @@
 
 <article>
     <div>
-        <p>Groups:</p>
         <table class="content-table">
             <thead>
             <tr>

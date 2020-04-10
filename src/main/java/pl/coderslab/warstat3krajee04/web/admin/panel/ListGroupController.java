@@ -16,6 +16,6 @@ public class ListGroupController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("groups", new UserGroupDao().findAll());
-        getServletContext().getRequestDispatcher("/list-groups.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/panel-groups.jsp").forward(request, response);
     }
 }

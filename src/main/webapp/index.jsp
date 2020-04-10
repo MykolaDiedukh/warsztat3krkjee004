@@ -11,7 +11,6 @@
 
 <article>
     <div>
-        <p>Solutions:</p>
         <table class="content-table">
             <thead>
             <tr>

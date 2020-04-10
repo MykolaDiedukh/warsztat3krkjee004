@@ -17,6 +17,6 @@ public class ListUserController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("users", new UserDao().findAllJoinByUsersGroup());
-        getServletContext().getRequestDispatcher("/list-users.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/panel-users.jsp").forward(request,response);
     }
 }

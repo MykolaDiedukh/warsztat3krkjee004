@@ -37,6 +37,6 @@ public class IndexController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int solutionId = Integer.parseInt(request.getParameter("solutionid"));
         request.setAttribute("solDetails", new SolutionDao().readById(solutionId));
-        getServletContext().getRequestDispatcher("/details.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/details-solution.jsp").forward(request,response);
     }
 }

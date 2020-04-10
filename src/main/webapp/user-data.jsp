@@ -11,7 +11,6 @@
 
 <section>
     <div>
-        <p>Details of user:</p>
         <table class="content-table">
             <thead  >
             <tr>
