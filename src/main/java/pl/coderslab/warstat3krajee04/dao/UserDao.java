@@ -13,6 +13,9 @@ import java.util.List;
 public class UserDao {
     private static final String CREAT_USER_QUERY = "INSERT INTO users (username, email, password, user_group_id) VALUES (?,?,?,?);";
     private static final String FIND_ALL_USERS_QUERY = "SELECT * FROM users;";
+    private static final String FIND_ALL_USERS_JOIN_GROUP_QUERY = "SELECT users.id, users.username, users.email, users.user_group_id, users_group.name as group_name\n" +
+            "FROM users\n" +
+            "    JOIN users_group on users.user_group_id = users_group.id;";
     private static final String READ_USER_BY_ID_QUERY = "SELECT * FROM users where id = ?;";
     private static final String READ_USER_BY_GROUP_ID_QUERY = "SELECT * FROM users where user_group_id = ?;";
     private static final String DELETE_USER_BY_ID_QUERY = "DELETE FROM users where id = ?;";
@@ -69,6 +72,31 @@ public class UserDao {
                 userToAdd.setEmail(resultSet.getString("email"));
                 userToAdd.setPasswordString(resultSet.getString("password"));
                 userToAdd.setUserGroupId(resultSet.getInt("user_group_id"));
+                userList.add(userToAdd);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+    /**
+     * Return all users join by users_groups
+     *
+     * @return
+     */
+    public List<User> findAllJoinByUsersGroup() {
+        List<User> userList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_USERS_JOIN_GROUP_QUERY);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                User userToAdd = new User();
+                userToAdd.setId(resultSet.getInt("id"));
+                userToAdd.setUsername(resultSet.getString("username"));
+                userToAdd.setEmail(resultSet.getString("email"));
+                userToAdd.setUserGroupId(resultSet.getInt("user_group_id"));
+                userToAdd.setUsersGroup(resultSet.getString("group_name"));
                 userList.add(userToAdd);
             }
         } catch (SQLException e) {

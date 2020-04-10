@@ -5,30 +5,36 @@
     <title>Programming school</title>
     <%@include file="header.jsp" %>
     <link href='<c:url value="/css/table.css"/>' rel="stylesheet" type="text/css">
+    <link href='<c:url value="/css/styles.css"/>' rel="stylesheet" type="text/css">
 </head>
 <body>
-<p>Details of solution:</p>
-<table>
-    <thead class="content-table">
-    <tr>
-        <td>Exercise name</td>
-        <td>Date</td>
-        <td>Solution</td>
-        <td>Point</td>
-        <td>Comment</td>
-    </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>${requestScope.solDetails.exerciseId}</td>
-            <td>${requestScope.solDetails.updated}</td>
-            <td>${requestScope.solDetails.description}</td>
-            <td>${requestScope.solDetails.point}</td>
-            <td>${requestScope.solDetails.commentar}</td>
-        </tr>
-    </tbody>
-</table>
-</div>
+
+<article>
+    <div>
+        <p>Details of solution:</p>
+        <table class="content-table">
+            <thead>
+            <tr>
+                <td>Exercise name</td>
+                <td>Date</td>
+                <td>Solution</td>
+                <td>Point</td>
+                <td>Comment</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${requestScope.solDetails.exerciseId}</td>
+                <td>${requestScope.solDetails.updated}</td>
+                <td>${requestScope.solDetails.description}</td>
+                <td>${requestScope.solDetails.point}</td>
+                <td>${requestScope.solDetails.commentar}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</article>
+
 </body>
 <footer>
     <%@include file="footer.jsp" %>

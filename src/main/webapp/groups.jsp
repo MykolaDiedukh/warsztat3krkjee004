@@ -11,19 +11,19 @@
 
 <article>
     <div>
-        <p>Users:</p>
+        <p>Groups:</p>
         <table class="content-table">
             <thead>
             <tr>
-                <td>User name</td>
+                <td>Group name</td>
                 <td>Action</td>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="user" items="${requestScope.users}">
+            <c:forEach var="group" items="${requestScope.groups}">
                 <tr>
-                    <td>${user.username}</td>
-                    <td><a href="${pageContext.request.contextPath}/group/list/details?userid=${user.id}">Details</a></td>
+                    <td>${group.name}</td>
+                    <td><a href="${pageContext.request.contextPath}/group/list?groupId=${group.id}">Details</a></td>
                 </tr>
             </c:forEach>
             </tbody>

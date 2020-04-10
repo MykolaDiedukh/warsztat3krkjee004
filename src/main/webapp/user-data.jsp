@@ -9,35 +9,52 @@
 </head>
 <body>
 
-<article>
+<section>
     <div>
-        <p>Solutions:</p>
+        <p>Details of user:</p>
+        <table class="content-table">
+            <thead  >
+            <tr>
+                <td>User name</td>
+                <td>email</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${requestScope.details.username}</td>
+                <td>${requestScope.details.email}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<aside>
+    <div>
         <table class="content-table">
             <thead>
             <tr>
                 <td>Exercise name</td>
-                <td>Solution author</td>
                 <td>Date</td>
-                <td>Actions</td>
+                <td>Solution</td>
+                <td>Point</td>
+                <td>Comment</td>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="sol" items="${requestScope.solutions}">
+            <c:forEach var="sol" items="${requestScope.solutionsOfUser}">
                 <tr>
                     <td>${sol.exerciseId}</td>
+                    <td>${sol.updated}</td>
                     <td>${sol.description}</td>
-                    <td>${sol.created}</td>
-                    <td>
-                        <form action="${pageContext.request.contextPath}/?solutionid=${sol.id}" method="post">
-                            <button class="button button3" type="submit">Details</button>
-                        </form>
-                    </td>
+                    <td>${sol.point}</td>
+                    <td>${sol.commentar}</td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
-</article>
+</aside>
 
 </body>
 <footer>

@@ -17,6 +17,6 @@ public class UserDetailsController extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userid"));
         request.setAttribute("details", new UserDao().readById(userId));
         request.setAttribute("solutionsOfUser", new SolutionDao().findAllByUserId(userId));
-        getServletContext().getRequestDispatcher("/userdata.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/user-data.jsp").forward(request,response);
     }
 }

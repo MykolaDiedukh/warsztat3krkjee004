@@ -8,8 +8,18 @@ public class User {
     private String email;
     private String password;
     private int userGroupId;
+    private String usersGroup;
 
     public User() {
+    }
+
+    public User(int id, String username, String email, String password, int userGroupId, String usersGroup) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.userGroupId = userGroupId;
+        this.usersGroup = usersGroup;
     }
 
     public User(String username, String email, String password, int userGroupId) {
@@ -36,6 +46,14 @@ public class User {
                 ", password='" + password + '\'' +
                 ", userGroupId=" + userGroupId +
                 '}';
+    }
+
+    public String getUsersGroup() {
+        return usersGroup;
+    }
+
+    public void setUsersGroup(String usersGroup) {
+        this.usersGroup = usersGroup;
     }
 
     public int getId() {

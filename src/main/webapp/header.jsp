@@ -15,7 +15,7 @@
         <ul>
             <li><a href="${pageContext.request.contextPath}/">Main page</a>
             <li><a href="${pageContext.request.contextPath}/group">Group</a>
-            <li><a href="${pageContext.request.contextPath}/panel">Admin panel</a>
+            <li><a href="${pageContext.request.contextPath}/panel/groups">Admin panel</a>
         </ul>
     </div>
 </header>
