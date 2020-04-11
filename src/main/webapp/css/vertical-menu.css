@@ -20,7 +20,7 @@
     position: absolute;
     right: 5px;
     bottom: 2px;
-    box-shadow: -8px -8px #80C8A0, 0 -8px #80C8A0, -8px 0 #80C8A0;
+    box-shadow: -8px -8px #80C8A0, 0 -8px #80c8a0, -8px 0 #80C8A0;
 }
 .category-wrap ul {
     list-style: none;

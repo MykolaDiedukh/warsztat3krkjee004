@@ -11,6 +11,38 @@ public class Solution {
     private String commentar;
     private int exerciseId;
     private int userId;
+    private String exercise;
+
+    public Solution(int id, LocalDateTime created, LocalDateTime updated, String description, int point, String commentar, int exerciseId, int userId, String exercise, String user) {
+        this.id = id;
+        this.created = created;
+        this.updated = updated;
+        this.description = description;
+        this.point = point;
+        this.commentar = commentar;
+        this.exerciseId = exerciseId;
+        this.userId = userId;
+        this.exercise = exercise;
+        this.user = user;
+    }
+
+    public String getExercise() {
+        return exercise;
+    }
+
+    public void setExercise(String exercise) {
+        this.exercise = exercise;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    private String user;
 
     public Solution() {
     }

@@ -43,7 +43,7 @@
             <tbody>
             <c:forEach var="sol" items="${requestScope.solutionsOfUser}">
                 <tr>
-                    <td>${sol.exerciseId}</td>
+                    <td>${sol.exercise}</td>
                     <td>${sol.updated}</td>
                     <td>${sol.description}</td>
                     <td>${sol.point}</td>

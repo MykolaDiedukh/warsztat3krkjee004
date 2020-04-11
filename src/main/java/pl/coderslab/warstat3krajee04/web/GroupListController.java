@@ -16,6 +16,6 @@ public class GroupListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int groupId = Integer.parseInt(request.getParameter("groupId"));
         request.setAttribute("users", new UserDao().findAllByGroupId(groupId));
-        getServletContext().getRequestDispatcher("/grouplist.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/group-list.jsp").forward(request,response);
     }
 }

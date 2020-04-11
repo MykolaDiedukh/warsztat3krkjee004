@@ -14,7 +14,8 @@
         <table class="content-table">
             <thead>
             <tr>
-                <td>Exercise name</td>
+                <td>Exercise</td>
+                <td>User</td>
                 <td>Date</td>
                 <td>Solution</td>
                 <td>Point</td>
@@ -23,7 +24,8 @@
             </thead>
             <tbody>
             <tr>
-                <td>${requestScope.solDetails.exerciseId}</td>
+                <td>${requestScope.solDetails.exercise}</td>
+                <td>${requestScope.solDetails.user}</td>
                 <td>${requestScope.solDetails.updated}</td>
                 <td>${requestScope.solDetails.description}</td>
                 <td>${requestScope.solDetails.point}</td>

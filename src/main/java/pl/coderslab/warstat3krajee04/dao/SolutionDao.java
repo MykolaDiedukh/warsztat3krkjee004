@@ -16,12 +16,20 @@ public class SolutionDao {
     private static final String FIND_ALL_SOLUTIONS_QUERY = "SELECT * FROM solutions;";
     private static final String FIND_ALL_SOLUTIONS_BY_USER_ID_QUERY = "SELECT * FROM solutions WHERE user_id = ?;";
     private static final String FIND_ALL_SOLUTIONS_BY_EXERCISE_ID_QUERY = "SELECT * FROM solutions WHERE exercise_id = ? order by  created DESC;";
-    private static final String READ_SOLUTION_BY_ID_QUERY = "SELECT * FROM solutions WHERE id = ?;";
+    private static final String READ_SOLUTION_BY_ID_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, solutions.comment, solutions.point, exercises.title as exercise, users.username as user\n" +
+            "FROM solutions\n" +
+            "        JOIN exercises on solutions.exercise_id = exercises.id\n" +
+            "        JOIN users on solutions.user_id = users.id\n" +
+            "        WHERE solutions.id = ?\n" +
+            "        ORDER BY created DESC;";
     private static final String DELETE_SOLUTION_BY_ID_QUERY = "DELETE FROM solutions WHERE id = ?;";
     private static final String UPDATE_SOLUTION_QUERY = "UPDATE solutions SET updated = ?, description = ? WHERE id = ?;";
     private static final String UPDATE_SOLUTION_RATING_QUERY = "UPDATE solutions SET point = ?, comment = ? WHERE id = ?;";
-    private String READ_RECENT_QUERY = "SELECT id, created, updated, description, exercise_id, user_id " +
-            "                           FROM solutions ORDER BY created DESC LIMIT ?;";
+    private String READ_RECENT_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, exercises.title as exercise, users.username as user, user_id\n" +
+            "    FROM solutions\n" +
+            "    JOIN exercises on solutions.exercise_id = exercises.id\n" +
+            "    JOIN users on solutions.user_id = users.id\n" +
+            "    ORDER BY created DESC LIMIT ?;";
 
     /**
      * Create solution
@@ -104,8 +112,8 @@ public class SolutionDao {
                         solution.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
                     }
                     solution.setDescription(resultSet.getString("description"));
-                    solution.setExerciseId(resultSet.getInt("exercise_id"));
-                    solution.setUserId(resultSet.getInt("user_id"));
+                    solution.setExercise(resultSet.getString("exercise"));
+                    solution.setUser(resultSet.getString("user"));
                 }
             }
         } catch (Exception e) {
@@ -172,7 +180,7 @@ public class SolutionDao {
     public List<Solution> findAllByUserId(int userId) {
         List<Solution> solutionList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_SOLUTIONS_BY_USER_ID_QUERY)
+             PreparedStatement statement = connection.prepareStatement(READ_SOLUTION_BY_ID_QUERY)
         ) {
             statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -184,8 +192,8 @@ public class SolutionDao {
                         solutionToAdd.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
                     }
                     solutionToAdd.setDescription(resultSet.getString("description"));
-                    solutionToAdd.setExerciseId(resultSet.getInt("exercise_id"));
-                    solutionToAdd.setUserId(resultSet.getInt("user_id"));
+                    solutionToAdd.setUser(resultSet.getString("user"));
+                    solutionToAdd.setExercise(resultSet.getString("exercise"));
                     solutionList.add(solutionToAdd);
                 }
             }
@@ -241,8 +249,9 @@ public class SolutionDao {
                 if (resultSet.getTimestamp("updated") != null) {
                     sol.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
                 }
+                sol.setExercise(resultSet.getString("exercise"));
+                sol.setUser(resultSet.getString("user"));
                 sol.setDescription(resultSet.getString("description"));
-                sol.setExerciseId(resultSet.getInt("exercise_id"));
                 sol.setUserId(resultSet.getInt("user_id"));
                 result.add(sol);
             }

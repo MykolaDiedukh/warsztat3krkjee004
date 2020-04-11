@@ -23,8 +23,8 @@
             <tbody>
             <c:forEach var="sol" items="${requestScope.solutions}">
                 <tr>
-                    <td>${sol.exerciseId}</td>
-                    <td>${sol.description}</td>
+                    <td>${sol.exercise}</td>
+                    <td>${sol.user}</td>
                     <td>${sol.created}</td>
                     <td>
                         <form action="${pageContext.request.contextPath}/?solutionid=${sol.id}" method="post">
