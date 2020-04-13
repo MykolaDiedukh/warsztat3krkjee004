@@ -11,23 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AddUserController", urlPatterns = {"/panel/users/add-user"})
-public class AddUserController extends HttpServlet {
+@WebServlet(name = "DeleteUserController", urlPatterns = {"/panel/users/delete-user"})
+public class DeleteUserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("groups", new UserGroupDao().findAll());
-        getServletContext().getRequestDispatcher("/add-user.jsp").forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        new UserDao().deleteById(id);
+        response.sendRedirect(request.getContextPath() + "/panel/users");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        int userGroup = Integer.parseInt(request.getParameter("userGroup"));
-        new UserDao().create(new User(name, email, password, userGroup));
-        response.sendRedirect(request.getContextPath() + "/panel/users");
     }
 
 

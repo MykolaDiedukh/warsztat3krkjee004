@@ -15,7 +15,7 @@
 </section>
 <aside>
     <div>
-        <form action="${pageContext.request.contextPath}/panel/users/add-user" method="post">
+        <form action="${pageContext.request.contextPath}/panel/group/add-group" method="post">
             <table class="content-table">
                 <thead>
                 <tr>
@@ -28,25 +28,7 @@
                 <tbody>
                 <tr>
                     <td><label>User name</label></td>
-                    <td><input name="username" type="text" placeholder="Full name" required/></td>
-                </tr>
-                <tr>
-                    <td><label>Email</label></td>
-                    <td><input type="text" name="email" placeholder="Email" required/></td>
-                </tr>
-                <tr>
-                    <td><label>Password</label></td>
-                    <td><input class="input" type="password" name="password" placeholder="Password" required/></td>
-                </tr>
-                <tr>
-                    <td><label>Group</label></td>
-                    <td>
-                        <select name="userGroup">
-                            <c:forEach var="group" items="${requestScope.groups}">
-                                <option value="${group.id}">${group.name}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
+                    <td><input name="groupname" type="text" placeholder="Group name" required/></td>
                 </tr>
                 </tbody>
             </table>

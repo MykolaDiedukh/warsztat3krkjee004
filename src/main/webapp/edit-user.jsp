@@ -15,12 +15,12 @@
 </section>
 <aside>
     <div>
-        <form action="${pageContext.request.contextPath}/panel/users/add-user" method="post">
+        <form action="${pageContext.request.contextPath}/panel/users/edit-user?id=${requestScope.users.id}" method="post">
             <table class="content-table">
                 <thead>
                 <tr>
                     <td>
-                        <button class="button button1" type="submit">Add</button>
+                        <button class="button button1" type="submit">Save</button>
                     </td>
                     <td></td>
                 </tr>
@@ -28,20 +28,17 @@
                 <tbody>
                 <tr>
                     <td><label>User name</label></td>
-                    <td><input name="username" type="text" placeholder="Full name" required/></td>
+                    <td><input name="username" type="text" value="${requestScope.users.username}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Email</label></td>
-                    <td><input type="text" name="email" placeholder="Email" required/></td>
-                </tr>
-                <tr>
-                    <td><label>Password</label></td>
-                    <td><input class="input" type="password" name="password" placeholder="Password" required/></td>
+                    <td><input type="text" name="email" value="${requestScope.users.email}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Group</label></td>
                     <td>
                         <select name="userGroup">
+                            <option value="${requestScope.users.userGroupId}">${requestScope.users.usersGroup}</option>
                             <c:forEach var="group" items="${requestScope.groups}">
                                 <option value="${group.id}">${group.name}</option>
                             </c:forEach>

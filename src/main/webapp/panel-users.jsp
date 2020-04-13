@@ -22,7 +22,11 @@
                 <td>email</td>
                 <td>Group</td>
                 <td></td>
-                <td></td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/panel/users/add-user" method="get">
+                        <button class="button button1" type="submit">Add User</button>
+                    </form>
+                </td>
             </tr>
             </thead>
             <tbody>
@@ -32,14 +36,14 @@
                     <td>${user.email}</td>
                     <td>${user.usersGroup}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/?todo=${user.id}" method="post">
-                            <button class="button button4" type="submit">Edit</button>
-                        </form>
+                        <button onclick="location.href='<%=request.getContextPath()%>/panel/users/edit-user?userid=${user.id}'" class="button button4">
+                            Edit
+                        </button>
                     </td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/?todo=${user.id}" method="post">
-                            <button class="button button2" type="submit">Delete</button>
-                        </form>
+                        <button onclick="location.href='<%=request.getContextPath()%>/panel/users/delete-user?id=${user.id}'" class="button button2">
+                            Delete
+                        </button>
                     </td>
                 </tr>
             </c:forEach>

@@ -20,7 +20,10 @@
             <tr>
                 <td>Group name</td>
                 <td></td>
-                <td></td>
+                <td><form action="${pageContext.request.contextPath}/panel/group/add-group" method="get">
+                    <button class="button button1" type="submit">Add Group</button>
+                </form>
+                </td>
             </tr>
             </thead>
             <tbody>
@@ -28,13 +31,14 @@
                 <tr>
                     <td>${group.name}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/?todo=${sol.id}" method="post">
-                            <button class="button button4" type="submit">Edit</button>
-                        </form>
+                        <button onclick="location.href='<%=request.getContextPath()%>/panel/group/edit-group?id=${group.id}'" class="button button4">
+                            Edit
+                        </button>
                     </td>
-                    <td><form action="${pageContext.request.contextPath}/?todo=${sol.id}" method="post">
-                        <button class="button button2" type="submit">Delete</button>
-                    </form>
+                    <td>
+                        <button onclick="location.href='<%=request.getContextPath()%>/panel/group/delete-group?id=${group.id}'" class="button button2">
+                            Delete
+                        </button>
                     </td>
                 </tr>
             </c:forEach>
