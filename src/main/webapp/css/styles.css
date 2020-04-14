@@ -61,7 +61,7 @@ input {
     padding: 18px 22px;
     border: none;
     border-radius: 5px;
-    color: white;
+    color: #000;
 }
 
 select {
@@ -69,6 +69,6 @@ select {
     padding: 18px 22px;
     border: none;
     border-radius: 5px;
-    color: white;
+    color: #000;
     background-color: #50e6ff;
 }

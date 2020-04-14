@@ -18,21 +18,27 @@
         <table class="content-table">
             <thead>
             <tr>
-                <td>Group name</td>
+                <td>Exercise name</td>
                 <td></td>
                 <td></td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/panel/exercises/add-exercise" method="get">
+                    <button class="button button1" type="submit">Add</button>
+                    </form>
+                </td>
             </tr>
             </thead>
             <tbody>
             <c:forEach var="exercise" items="${requestScope.exercises}">
                 <tr>
                     <td>${exercise.title}</td>
+                    <td>${exercise.description}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/?todo=${exercise.id}" method="post">
+                        <form action="${pageContext.request.contextPath}/panel/exercises/edit-exercise?id=${exercise.id}" method="post">
                             <button class="button button4" type="submit">Edit</button>
                         </form>
                     </td>
-                    <td><form action="${pageContext.request.contextPath}/?todo=${exercise.id}" method="post">
+                    <td><form action="${pageContext.request.contextPath}/panel/exercises/delete-exercise?id=${exercise.id}" method="post">
                         <button class="button button2" type="submit">Delete</button>
                     </form>
                     </td>

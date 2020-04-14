@@ -14,6 +14,11 @@ public class Exercise {
         this.description = description;
     }
 
+    public Exercise(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Exercise{" +

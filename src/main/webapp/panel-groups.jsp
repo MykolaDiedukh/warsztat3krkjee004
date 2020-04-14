@@ -20,9 +20,10 @@
             <tr>
                 <td>Group name</td>
                 <td></td>
-                <td><form action="${pageContext.request.contextPath}/panel/group/add-group" method="get">
-                    <button class="button button1" type="submit">Add Group</button>
-                </form>
+                <td>
+                    <form action="${pageContext.request.contextPath}/panel/group/add-group" method="get">
+                    <button class="button button1" type="submit">Add</button>
+                    </form>
                 </td>
             </tr>
             </thead>

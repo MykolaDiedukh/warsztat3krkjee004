@@ -24,7 +24,7 @@
                 <td></td>
                 <td>
                     <form action="${pageContext.request.contextPath}/panel/users/add-user" method="get">
-                        <button class="button button1" type="submit">Add User</button>
+                        <button class="button button1" type="submit">Add</button>
                     </form>
                 </td>
             </tr>
