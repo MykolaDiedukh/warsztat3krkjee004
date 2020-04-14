@@ -18,7 +18,8 @@
     <ul>
         <li><a href="${pageContext.request.contextPath}/panel/groups">Groups</a></li>
         <li><a href="${pageContext.request.contextPath}/panel/users">Users</a></li>
-        <li><a href="${pageContext.request.contextPath}/panel/exercises">Solutions</a></li>
+        <li><a href="${pageContext.request.contextPath}/panel/exercises">Exercises</a></li>
+        <li><a href="${pageContext.request.contextPath}/panel/solutions">Solutions</a></li>
     </ul>
 </div>
 </body>

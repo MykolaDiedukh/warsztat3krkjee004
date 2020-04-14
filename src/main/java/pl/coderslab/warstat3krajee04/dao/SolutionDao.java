@@ -14,9 +14,13 @@ import java.util.List;
 public class SolutionDao {
     private static final String CREAT_SOLUTION_QUERY = "INSERT INTO solutions (created, exercise_id, user_id) VALUES (?,?,?);";
     private static final String FIND_ALL_SOLUTIONS_QUERY = "SELECT * FROM solutions;";
+    private static final String FIND_ALL_SOLUTIONS_IS_NOT_NULL_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, solutions.comment, solutions.point, exercises.title as exercise, users.username as user, user_id\n" +
+            "                FROM solutions\n" +
+            "                JOIN exercises on solutions.exercise_id = exercises.id\n" +
+            "                JOIN users on solutions.user_id = users.id WHERE solutions.description IS NOT NULL;";
     private static final String FIND_ALL_SOLUTIONS_BY_USER_ID_QUERY = "SELECT * FROM solutions WHERE user_id = ?;";
     private static final String FIND_ALL_SOLUTIONS_BY_EXERCISE_ID_QUERY = "SELECT * FROM solutions WHERE exercise_id = ? order by  created DESC;";
-    private static final String READ_SOLUTION_BY_ID_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, solutions.comment, solutions.point, exercises.title as exercise, users.username as user\n" +
+    private static final String FIND_SOLUTION_BY_ID_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, solutions.comment, solutions.point, exercises.title as exercise, users.username as user\n" +
             "FROM solutions\n" +
             "        JOIN exercises on solutions.exercise_id = exercises.id\n" +
             "        JOIN users on solutions.user_id = users.id\n" +
@@ -92,6 +96,37 @@ public class SolutionDao {
         return solutionList;
     }
 
+ /**
+     * Return all solutions where solution is not null
+     *
+     * @return
+     */
+    public List<Solution> findAllSolutions() {
+        List<Solution> solutionList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_SOLUTIONS_IS_NOT_NULL_QUERY);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Solution solutionToAdd = new Solution();
+                solutionToAdd.setId(resultSet.getInt("id"));
+                solutionToAdd.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+                if (resultSet.getTimestamp("updated") != null) {
+                    solutionToAdd.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                }
+                solutionToAdd.setDescription(resultSet.getString("description"));
+                solutionToAdd.setCommentar(resultSet.getString("comment"));
+                solutionToAdd.setExerciseId(resultSet.getInt("exercise_id"));
+                solutionToAdd.setPoint(resultSet.getInt("point"));
+                solutionToAdd.setUserId(resultSet.getInt("user_id"));
+                solutionList.add(solutionToAdd);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return solutionList;
+    }
+
     /**
      * Get solution by id
      *
@@ -101,7 +136,7 @@ public class SolutionDao {
     public Solution readById(int id) {
         Solution solution = new Solution();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(READ_SOLUTION_BY_ID_QUERY)
+             PreparedStatement statement = connection.prepareStatement(FIND_SOLUTION_BY_ID_QUERY)
         ) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -112,6 +147,7 @@ public class SolutionDao {
                         solution.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
                     }
                     solution.setDescription(resultSet.getString("description"));
+                    solution.setPoint(resultSet.getInt("point"));
                     solution.setExercise(resultSet.getString("exercise"));
                     solution.setUser(resultSet.getString("user"));
                 }
@@ -180,7 +216,7 @@ public class SolutionDao {
     public List<Solution> findAllByUserId(int userId) {
         List<Solution> solutionList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(READ_SOLUTION_BY_ID_QUERY)
+             PreparedStatement statement = connection.prepareStatement(FIND_SOLUTION_BY_ID_QUERY)
         ) {
             statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -192,6 +228,8 @@ public class SolutionDao {
                         solutionToAdd.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
                     }
                     solutionToAdd.setDescription(resultSet.getString("description"));
+                    solutionToAdd.setCommentar(resultSet.getString("comment"));
+                    solutionToAdd.setPoint(resultSet.getInt("point"));
                     solutionToAdd.setUser(resultSet.getString("user"));
                     solutionToAdd.setExercise(resultSet.getString("exercise"));
                     solutionList.add(solutionToAdd);

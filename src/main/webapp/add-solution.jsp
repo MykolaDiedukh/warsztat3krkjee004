@@ -15,24 +15,36 @@
 </section>
 <aside>
     <div>
-        <form action="${pageContext.request.contextPath}/panel/exercises/edit-exercise?id=${requestScope.exercises.id}" method="post">
+        <form action="${pageContext.request.contextPath}/panel/users/add-user" method="post">
             <table class="content-table">
                 <thead>
                 <tr>
                     <td>
-                        <button class="button button1" type="submit">Save</button>
+                        <button class="button button1" type="submit">Add</button>
                     </td>
                     <td></td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td><label>Title</label></td>
-                    <td><input name="title" type="text" value="${requestScope.exercises.title}" required/></td>
+                    <td><label>Chose exercise</label></td>
+                    <td>
+                        <select name="selectedExercise">
+                            <c:forEach var="exercise" items="${requestScope.exercises}">
+                                <option value="${exercise.id}">${exercise.title}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
-                    <td><label>Description</label></td>
-                    <td><input type="text" name="description" value="${requestScope.exercises.description}" required/></td>
+                    <td><label>Chose user</label></td>
+                    <td>
+                        <select name="selectedUser">
+                            <c:forEach var="user" items="${requestScope.users}">
+                                <option value="${user.id}">${user.username}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 </tbody>
             </table>

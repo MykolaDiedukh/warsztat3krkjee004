@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="footer-end">
-    <p>Desing By: <a href="${pageContext.request.contextPath}/">Programing school</a></p>
+    <p>Desing By: <a href="${pageContext.request.contextPath}/">Mykola Diedukh</a></p>
 </div>
 </body>
 </html>

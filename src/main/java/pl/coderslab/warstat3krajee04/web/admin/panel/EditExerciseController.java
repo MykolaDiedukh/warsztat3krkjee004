@@ -28,7 +28,7 @@ public class EditExerciseController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-        new ExerciseDao().update(new Exercise(title, description));
+        new ExerciseDao().update(new Exercise(id, title, description));
         response.sendRedirect(request.getContextPath() + "/panel/exercises");
     }
 }

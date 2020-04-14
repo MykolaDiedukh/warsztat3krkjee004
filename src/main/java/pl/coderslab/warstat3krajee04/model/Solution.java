@@ -26,6 +26,12 @@ public class Solution {
         this.user = user;
     }
 
+    public Solution(LocalDateTime created, int exerciseId, int userId) {
+        this.created = created;
+        this.exerciseId = exerciseId;
+        this.userId = userId;
+    }
+
     public String getExercise() {
         return exercise;
     }
