@@ -27,23 +27,12 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td><label>User name</label></td>
-                    <td><input name="username" type="text" value="${requestScope.users.username}" required/></td>
+                    <td><label>Title</label></td>
+                    <td><input name="title" type="text" value="${requestScope.exercises.title}" required/></td>
                 </tr>
                 <tr>
-                    <td><label>Email</label></td>
-                    <td><input type="text" name="email" value="${requestScope.users.email}" required/></td>
-                </tr>
-                <tr>
-                    <td><label>Group</label></td>
-                    <td>
-                        <select name="userGroup">
-                            <option value="${requestScope.users.userGroupId}">${requestScope.users.usersGroup}</option>
-                            <c:forEach var="group" items="${requestScope.groups}">
-                                <option value="${group.id}">${group.name}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
+                    <td><label>Description</label></td>
+                    <td><input type="text" name="description" value="${requestScope.exercises.description}" required/></td>
                 </tr>
                 </tbody>
             </table>

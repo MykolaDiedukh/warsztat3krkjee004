@@ -34,13 +34,14 @@
                     <td>${exercise.title}</td>
                     <td>${exercise.description}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/panel/exercises/edit-exercise?id=${exercise.id}" method="post">
-                            <button class="button button4" type="submit">Edit</button>
-                        </form>
+                        <button onclick="location.href='<%=request.getContextPath()%>/panel/exercises/edit-exercise?id=${exercise.id}'" class="button button4">
+                            Edit
+                        </button>
                     </td>
-                    <td><form action="${pageContext.request.contextPath}/panel/exercises/delete-exercise?id=${exercise.id}" method="post">
-                        <button class="button button2" type="submit">Delete</button>
-                    </form>
+                    <td>
+                        <button onclick="location.href='<%=request.getContextPath()%>/panel/exercises/delete-exercise?id=${exercise.id}'" class="button button2">
+                            Delete
+                        </button>
                     </td>
                 </tr>
             </c:forEach>
