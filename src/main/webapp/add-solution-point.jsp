@@ -15,36 +15,40 @@
 </section>
 <aside>
     <div>
-        <form action="${pageContext.request.contextPath}/panel/users/add-user" method="post">
+        <form action="${pageContext.request.contextPath}/panel/solutions/add-solution-point?id=${requestScope.solutions.id}" method="post">
             <table class="content-table">
                 <thead>
                 <tr>
                     <td>
-                        <button class="button button1" type="submit">Add</button>
+                        <button class="button button1" type="submit">Save</button>
                     </td>
                     <td></td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td><label>Chose exercise</label></td>
-                    <td>
-                        <select name="selectedExercise">
-                            <c:forEach var="exercise" items="${requestScope.exercises}">
-                                <option value="${exercise.id}">${exercise.title}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
+                    <td><label>Exercise</label></td>
+                    <td><input name="exercise" type="text" value="${requestScope.solutions.exercise}" readonly required/></td>
                 </tr>
                 <tr>
-                    <td><label>Chose user</label></td>
-                    <td>
-                        <select name="selectedUser">
-                            <c:forEach var="user" items="${requestScope.users}">
-                                <option value="${user.id}">${user.username}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
+                    <td><label>Solution Author</label></td>
+                    <td><input type="text" name="author" value="${requestScope.solutions.user}" readonly required/></td>
+                </tr>
+                <tr>
+                    <td><label>Solution</label></td>
+                    <td><input class="input" type="text" name="solution" value="${requestScope.solutions.description}" readonly required/></td>
+                </tr>
+                <tr>
+                    <td><label>Date</label></td>
+                    <td><input class="input" type="text" name="date" value="${requestScope.solutions.updated}" readonly required/></td>
+                </tr>
+                <tr>
+                    <td><label>Point</label></td>
+                    <td><input class="input" type="text" name="point" value="${requestScope.solutions.point}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Comment</label></td>
+                    <td><input class="input" type="text" name="comment" value="${requestScope.solutions.commentar}" required/></td>
                 </tr>
                 </tbody>
             </table>

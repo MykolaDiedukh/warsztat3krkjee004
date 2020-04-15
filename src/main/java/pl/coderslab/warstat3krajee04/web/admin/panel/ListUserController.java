@@ -11,12 +11,15 @@ import java.io.IOException;
 
 @WebServlet(name = "ListUserController", urlPatterns = {"/panel/users"})
 public class ListUserController extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("users", new UserDao().findAllJoinByUsersGroup());
         getServletContext().getRequestDispatcher("/panel-users.jsp").forward(request,response);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+
 }

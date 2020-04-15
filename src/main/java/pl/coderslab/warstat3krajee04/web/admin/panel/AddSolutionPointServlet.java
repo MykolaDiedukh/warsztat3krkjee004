@@ -9,22 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 @WebServlet(name = "AddSolutionPointServlet", urlPatterns = {"/panel/solutions/add-solution-point"})
 public class AddSolutionPointServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("solutions", new SolutionDao().findAllSolutions());
-        getServletContext().getRequestDispatcher("/add-solution-point.jsp").forward(request, response);//todo
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("solutions", new SolutionDao().findSolutionById(id));
+        getServletContext().getRequestDispatcher("/add-solution-point.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("solution", new SolutionDao().readById(id));
-        getServletContext().getRequestDispatcher("/todo").forward(request, response);
+        int point = Integer.parseInt(request.getParameter("point"));
+        String comment = request.getParameter("comment");
+        Solution solution = new Solution();
+        solution.setId(id);
+        solution.setPoint(point);
+        solution.setCommentar(comment);
+        new SolutionDao().updateRating(solution);
+        response.sendRedirect(request.getContextPath() + "/panel/solutions/solution-point");
     }
-
-
 }

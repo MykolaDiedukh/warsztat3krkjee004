@@ -15,7 +15,7 @@
 </section>
 <aside>
     <div>
-        <form action="${pageContext.request.contextPath}/panel/users/add-user" method="post">
+        <form action="${pageContext.request.contextPath}/panel/solutions/add-solution" method="post">
             <table class="content-table">
                 <thead>
                 <tr>

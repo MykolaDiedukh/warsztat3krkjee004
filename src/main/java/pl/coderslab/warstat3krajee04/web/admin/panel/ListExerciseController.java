@@ -11,12 +11,14 @@ import java.io.IOException;
 
 @WebServlet(name = "ListSolutionController", urlPatterns = {"/panel/exercises"})
 public class ListExerciseController extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("exercises", new ExerciseDao().findAll());
         getServletContext().getRequestDispatcher("/panel-exercises.jsp").forward(request,response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 }

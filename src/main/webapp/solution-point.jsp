@@ -11,35 +11,42 @@
 <body>
 
 <section>
-    <%@include file="vertical-menu.jsp"%>
+    <%@include file="vertical-menu.jsp" %>
 </section>
 <aside>
     <div>
         <table class="content-table">
             <thead>
             <tr>
-                <td>Configuration solutions</td>
-                <td></td>
+                <td>Exercise</td>
+                <td>Solution Author</td>
+                <td>Solution</td>
+                <td>Date</td>
+                <td>Point</td>
+                <td>Comment</td>
+                <td>
+
+                </td>
 
             </tr>
             </thead>
             <tbody>
+            <c:forEach var="solution" items="${requestScope.solutions}">
                 <tr>
-                    <td>Add exercise for user</td>
+                    <td>${solution.exercise}</td>
+                    <td>${solution.user}</td>
+                    <td>${solution.description}</td>
+                    <td>${solution.updated}</td>
+                    <td>${solution.point}</td>
+                    <td>${solution.commentar}</td>
                     <td>
-                        <button onclick="location.href='<%=request.getContextPath()%>/panel/solutions/add-solution'" class="button button1">
-                            Add
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Set points and commenter for solutions</td>
-                    <td>
-                        <button onclick="location.href='<%=request.getContextPath()%>/panel/solutions/solution-point'" class="button button1">
+                        <button onclick="location.href='<%=request.getContextPath()%>/panel/solutions/add-solution-point?id=${solution.id}'"
+                                class="button button4">
                             Set
                         </button>
                     </td>
                 </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
