@@ -22,7 +22,11 @@
             <c:forEach var="user" items="${requestScope.users}">
                 <tr>
                     <td>${user.username}</td>
-                    <td><a href="${pageContext.request.contextPath}/group/list/details?userid=${user.id}">Details</a></td>
+                    <td>
+                        <button onclick="location.href='<%=request.getContextPath()%>/group/list/details?userid=${user.id}'" class="button button3">
+                            Details
+                        </button>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
