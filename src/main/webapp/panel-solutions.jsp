@@ -25,6 +25,14 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>Show all solutions</td>
+                    <td>
+                        <button onclick="location.href='<%=request.getContextPath()%>/panel/solutions/show-solutions'" class="button button3">
+                            Show
+                        </button>
+                    </td>
+                </tr>
+                <tr>
                     <td>Add exercise for user</td>
                     <td>
                         <button onclick="location.href='<%=request.getContextPath()%>/panel/solutions/add-solution'" class="button button1">

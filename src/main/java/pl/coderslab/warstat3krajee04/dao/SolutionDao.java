@@ -13,11 +13,15 @@ import java.util.List;
 
 public class SolutionDao {
     private static final String CREAT_SOLUTION_QUERY = "INSERT INTO solutions (created, exercise_id, user_id) VALUES (?,?,?);";
-    private static final String FIND_ALL_SOLUTIONS_QUERY = "SELECT * FROM solutions;";
+    private static final String FIND_ALL_SOLUTIONS_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, solutions.comment, solutions.point, exercises.title as exercise, users.username as user, user_id\n" +
+            "                FROM solutions\n" +
+            "                JOIN exercises on solutions.exercise_id = exercises.id\n" +
+            "                JOIN users on solutions.user_id = users.id;";
     private static final String FIND_ALL_SOLUTIONS_IS_NOT_NULL_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, solutions.comment, solutions.point, exercises.title as exercise, users.username as user, user_id\n" +
             "                FROM solutions\n" +
             "                JOIN exercises on solutions.exercise_id = exercises.id\n" +
-            "                JOIN users on solutions.user_id = users.id WHERE solutions.description IS NOT NULL;";
+            "                JOIN users on solutions.user_id = users.id " +
+            "                   WHERE solutions.description IS NOT NULL;";
     private static final String FIND_ALL_SOLUTIONS_IS_NOT_NULL_BY_ID_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, solutions.comment, solutions.point, exercises.title as exercise, users.username as user, user_id\n" +
             "                FROM solutions\n" +
             "                JOIN exercises on solutions.exercise_id = exercises.id\n" +
@@ -39,9 +43,8 @@ public class SolutionDao {
             "        ORDER BY created DESC;";
     private static final String DELETE_SOLUTION_BY_ID_QUERY = "DELETE FROM solutions WHERE id = ?;";
     private static final String UPDATE_SOLUTION_QUERY = "UPDATE solutions SET updated = ?, description = ? WHERE id = ?;";
-    private static final String UPDATE_SOLUTION_POINT_QUERY = "UPDATE solutions SET point = ?, comment = ? WHERE id = ?;";
     private static final String UPDATE_SOLUTION_RATING_QUERY = "UPDATE solutions SET point = ?, comment = ? WHERE id = ?;";
-    private String READ_RECENT_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, exercises.title as exercise, users.username as user, user_id\n" +
+    private String FIND_RECENT_QUERY = "SELECT solutions.id, solutions.created, solutions.updated, solutions.description, exercises.title as exercise, users.username as user, user_id\n" +
             "    FROM solutions\n" +
             "    JOIN exercises on solutions.exercise_id = exercises.id\n" +
             "    JOIN users on solutions.user_id = users.id\n" +
@@ -98,7 +101,10 @@ public class SolutionDao {
                     solutionToAdd.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
                 }
                 solutionToAdd.setDescription(resultSet.getString("description"));
-                solutionToAdd.setExerciseId(resultSet.getInt("exercise_id"));
+                solutionToAdd.setPoint(resultSet.getInt("point"));
+                solutionToAdd.setCommentar(resultSet.getString("comment"));
+                solutionToAdd.setUser(resultSet.getString("user"));
+                solutionToAdd.setExercise(resultSet.getString("exercise"));
                 solutionToAdd.setUserId(resultSet.getInt("user_id"));
                 solutionList.add(solutionToAdd);
             }
@@ -324,7 +330,7 @@ public class SolutionDao {
         List<Solution> result = new ArrayList<>();
 
         try (Connection conn = DbUtil.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement(READ_RECENT_QUERY);
+            PreparedStatement statement = conn.prepareStatement(FIND_RECENT_QUERY);
             statement.setInt(1, howMany);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
