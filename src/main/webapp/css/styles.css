@@ -1,0 +1,74 @@
+code {
+    background: #2db34a;
+    border-radius: 6px;
+    color: #fff;
+    display: block;
+    font: 14px/24px "Source Code Pro", Inconsolata, "Lucida Console", Terminal, "Courier New", Courier;
+    padding: 24px 15px;
+    text-align: center;
+}
+header,
+section,
+aside,
+article,
+footer {
+    margin: 0 1.5% 24px 1.5%;
+}
+section {
+    float: left;
+    width: 18%;
+}
+aside {
+    float: right;
+    width: 75%;
+}
+footer {
+    clear: both;
+    margin-bottom: 0;
+}
+
+.button {
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 1px 1px;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: #1caf0e;
+    border-radius: 8px;
+}
+.button2 {
+    background-color: #FF6A4D;
+    border-radius: 8px;
+}
+.button3 {
+    background-color: #2dd7f3;
+    border-radius: 8px;
+}
+.button4 {
+    background-color: #FFA500;
+    border-radius: 8px;
+}
+
+input {
+    width: 80%;
+    padding: 18px 22px;
+    border: greenyellow;
+    border-radius: 5px;
+    color: #000;
+}
+
+select {
+    width: 80%;
+    padding: 18px 22px;
+    border: greenyellow;
+    border-radius: 5px;
+    color: #000;
+    background-color: #50e6ff;
+}

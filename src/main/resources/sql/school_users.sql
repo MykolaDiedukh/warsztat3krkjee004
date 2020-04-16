@@ -1,0 +1,11 @@
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (1, 'Valet Klaus', 'klaus@gmail.com', '$2a$10$eGZmH0bRJGhnWqCBmrAKCeacLUcmMnhWoQcA44hVa2HPRW6dIRkQm', 1);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (2, 'Violeta Kowalska', 'kowalska@gmail.com', '$2a$10$eGZmH0bRJGhnWqCBmrAKCeacLUcmMnhWoQcA44hVa2HPRW6dIRkQm', 2);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (3, 'Paul Breg', 'breg@gmail.com', '$2a$10$eGZmH0bRJGhnWqCBmrAKCeacLUcmMnhWoQcA44hVa2HPRW6dIRkQm', 1);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (4, 'Jonatan Celvs', 'cevls@gmail.com', '$2a$10$eGZmH0bRJGhnWqCBmrAKCeacLUcmMnhWoQcA44hVa2HPRW6dIRkQm', 2);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (5, 'Piter Akardion', 'akardion@gmail.com', '$2a$10$eGZmH0bRJGhnWqCBmrAKCeacLUcmMnhWoQcA44hVa2HPRW6dIRkQm', 1);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (6, 'Mejv Lerus', 'lerus@gmail.com', '$2a$10$eGZmH0bRJGhnWqCBmrAKCeacLUcmMnhWoQcA44hVa2HPRW6dIRkQm', 2);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (7, 'Selena Gomes', 'gomes@gmail.com', '$2a$10$EyL93STOUdEs7tmDULEEa.vgBXqOaFGMSEn4Oihv.7jVsoQTbpNAW', 1);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (8, 'Joli Macker', 'macker@gmail.com', '$2a$10$uUhQDqRPT2a.j/PPcYOqvODOFIDPAX0cfxR99vMM6u9Cl.ER4yTWq', 2);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (9, 'Klara Felit', 'felit@gmail.com', '$2a$10$3J7XA.ZJ/HUfOtt0lQZ7f.pQrpzWKNPaNVsZGtDWMAC5veUs8fu6m', 2);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (10, 'Mikki Telmant', 'telmant@gmail.com', '$2a$10$9p0yzDjHWBwsdtMGufVwgeHT0M8xWLUu7QJ48ZvpL8zP4BKmUaAFi', 1);
+INSERT INTO school.users (id, username, email, password, user_group_id) VALUES (11, 'Mack Donald', 'donald@gmail.com', '$2a$10$KVdZdnVEVXOSXJHzxTS2XeS/Uk8rVL/4syllwLMB5d27yoKd2F6mS', 4);
